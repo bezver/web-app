@@ -1,0 +1,28 @@
+<div class="login-container m-auto mt-5">
+  <form [formGroup]="form" (submit)="submit()">
+    <div *ngIf="isRegisterFlow; else signinText">
+      <h1 class="h3 mb-3 fw-normal text-center">Registration</h1>
+    </div>
+    <ng-template #signinText>
+      <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+    </ng-template>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" formControlName="email">
+        <mat-error *ngIf="this.form.controls['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-100 mb-0">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="this.form.controls['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <button class="w-100" type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+  <a *ngIf="!isRegisterFlow" class="text-decoration-none  link-primary" mat-list-item routerLink="/register">
+    <h3 class="fw-normal text-center mt-3">Register?</h3>
+  </a>
+</div>

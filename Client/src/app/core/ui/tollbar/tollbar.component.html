@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <button 
+    *ngIf="isHandset$ | async"
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span>{{ config.title }}</span>
+  <button mat-icon-button (click)="goHome()">
+    <mat-icon class="logout-icon">home</mat-icon>
+  </button>
+  <div class="w-100"></div>
+  <div *ngIf="!isLoggingin">
+    <div *ngIf="isAuthenticated; else loginButton">
+      <span>{{ authService.user?.email }}</span>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon class="logout-icon">logout</mat-icon>
+      </button>
+    </div>
+    <ng-template #loginButton>
+      <button
+        class="me-5"
+        mat-icon-button
+        [disableRipple]="true"
+        (click)="login()">
+        <span class="fs-5 me-1">Sign in</span>
+        <mat-icon>login</mat-icon>
+      </button>
+    </ng-template>
+  </div>
+</mat-toolbar>

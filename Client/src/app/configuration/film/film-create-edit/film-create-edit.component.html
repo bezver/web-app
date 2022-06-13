@@ -1,0 +1,35 @@
+<dx-popup
+        class="popup"
+        [width]="300"
+        [height]="350"
+        [showTitle]="true"
+        title="Information"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popupVisible"
+        (onShowing)="onShowing()">
+        <div *dxTemplate="let data of 'content'">
+          <form [formGroup]="form" (submit)="submit()">
+            <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="this.form.controls['name'].invalid">{{'Name is required'}}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="w-100 mb-0">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="'text'" formControlName="password">
+                
+                <mat-error *ngIf="this.form.controls['password'].invalid">{{'getPasswordErrorMessage()'}}</mat-error>
+              </mat-form-field>
+              <dx-button type="submit" text="Submit" class="w-100"></dx-button>
+              <!-- <button class="w-100" type="submit" mat-raised-button color="primary">Submit</button> -->
+          </form>
+        </div>
+    </dx-popup>

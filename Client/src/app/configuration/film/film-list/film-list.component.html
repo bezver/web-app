@@ -1,0 +1,70 @@
+<!-- <dx-button class="addRowButton" text='Add row' (onClick)='onClick()'></dx-button> -->
+<dx-data-grid id="dataGrid"
+  [dataSource]="dataSource"
+  keyExpr="id"
+  [showBorders]="true"
+  [allowColumnReordering]="true"
+  [allowColumnResizing]="true"
+>
+
+
+
+<dxo-toolbar>
+  <dxi-item name="addRowButton" showText="always"></dxi-item>
+  <dxi-item name="columnChooserButton"></dxi-item>
+  <dxi-item name="searchPanel"></dxi-item>
+</dxo-toolbar>
+<dxo-editing
+  mode="popup"
+  [allowUpdating]="true"
+  [allowDeleting]="true"
+  [allowAdding]="true">
+</dxo-editing>
+
+
+
+
+
+<dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+<dxo-search-panel [visible]="true"></dxo-search-panel>
+
+<dxi-column dataField="name">
+  <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+</dxi-column>
+
+<dxi-column dataField="description"></dxi-column>
+
+<dxi-column
+  dataField="releaseDate"
+  dataType="date">
+  <dxi-validation-rule type="required" message="Date is required"></dxi-validation-rule>
+</dxi-column>
+
+<dxi-column dataField="countries" [calculateCellValue]="calculateCountries"></dxi-column>
+
+<dxi-column dataField="genres" [calculateCellValue]="calculateGenres"></dxi-column>
+
+<!-- <dxi-column caption="" cellTemplate="commandCellTemplate"></dxi-column>
+<div *dxTemplate="let d of 'commandCellTemplate'">
+  <button type="button" class="btn btn-link p-0 pe-1" (click)="onEditClick(d.data.id)">Edit</button>
+  <button type="button" class="btn btn-link p-0" (click)="onDeleteClick(d.data.id)">Delete</button>
+</div> -->
+
+
+<dxo-paging [pageSize]="config.pageSize"> </dxo-paging>
+<dxo-pager
+  [visible]="true"
+  [showNavigationButtons]="true">
+</dxo-pager>
+</dx-data-grid>
+
+<!-- <dxo-remote-operations
+  [filtering]="false"
+  [paging]="true"
+  [sorting]="false"
+  [summary]="false"
+  [grouping]="false"
+  [groupPaging]="false"> 
+</dxo-remote-operations> -->
+
+<!-- <app-film-create-edit [(popupVisible)]='isPopupVisible' [id]='currentID'></app-film-create-edit> -->

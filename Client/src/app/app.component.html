@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+      #drawer
+      class="sidenav"
+      fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+
+    <mat-tab-group>
+      <mat-tab> 
+        <ng-template mat-tab-label>
+          <mat-icon>widgets</mat-icon>
+        </ng-template>
+        <mat-nav-list>
+          <a mat-list-item routerLink="film">Films</a>
+        </mat-nav-list>
+      </mat-tab>
+
+      <mat-tab *ngIf="isAdmin | async"> 
+        <ng-template mat-tab-label>
+          <mat-icon>admin_panel_settings</mat-icon>
+        </ng-template>
+        <mat-nav-list>
+          <a mat-list-item routerLink="configuration/film">Films</a>
+          <a mat-list-item routerLink="configuration/country">Countries</a>
+          <a mat-list-item routerLink="configuration/genre">Genres</a>
+        </mat-nav-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-tollbar [drawer]="drawer"></app-tollbar>
+    <div class="pt-5">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,30 @@
+<dx-data-grid id="dataGrid"
+  [dataSource]="dataSource"
+  keyExpr="id"
+  [showBorders]="true"
+  [allowColumnReordering]="true"
+  [allowColumnResizing]="true"
+>
+<dxo-toolbar>
+  <dxi-item name="addRowButton" showText="always"></dxi-item>
+  <dxi-item name="searchPanel"></dxi-item>
+</dxo-toolbar>
+
+<dxo-search-panel [visible]="true"></dxo-search-panel>
+<dxo-editing
+  mode="form"
+  [allowUpdating]="true"
+  [allowDeleting]="true"
+  [allowAdding]="true">
+</dxo-editing>
+
+<dxi-column dataField="name">
+  <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+</dxi-column>
+
+<dxo-paging [pageSize]="config.pageSize"> </dxo-paging>
+<dxo-pager
+  [visible]="true"
+  [showNavigationButtons]="true">
+</dxo-pager>
+</dx-data-grid>
